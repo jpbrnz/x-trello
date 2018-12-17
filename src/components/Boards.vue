@@ -60,7 +60,8 @@
                         </div>
                       </div>
                       <h5>{{ card.name }}</h5>
-                      <b-badge v-if="card.due" variant="secondary">Card Due: {{card.due | formatDueDate}}</b-badge>
+                      <b-badge v-if="card.due" variant="success">Card Due: {{card.due | formatDueDate}}</b-badge>
+                      <hr>
                       <vue-markdown>{{ card.desc }}</vue-markdown>
                       <div v-if="showComments">
                         <div v-if="card.comments[0]" class="card-comment-box">
@@ -88,6 +89,7 @@
                           </div>
                         </div>
                       </div>
+                      <hr>
                       <small class="float-right mt-2"><a class="card-link" :title="card.shortUrl" v-bind:href="card.shortUrl" target="_blank"><span class="ei-link_alt"></span> View Card on Trello</a></small>
                     </div>
                   </div>

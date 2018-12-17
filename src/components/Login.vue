@@ -1,7 +1,6 @@
 <template>
 <div class="loginHeader">
   <div class="text-left" v-if="$store.state.loggedIn">
-    <b-badge class="mb-2" variant="light">Welcome:&nbsp;&nbsp;<b><b-img rounded="circle" v-bind:src="'https://trello-avatars.s3.amazonaws.com/' + $store.state.member.avatarHash +'/30.png'" /> {{ $store.state.member.fullName }}</b></b-badge>
   </div>
   <div class="text-center" v-else>
     <button class="btn btn-success" v-on:click="loginTrello">Login to Trello</button>
@@ -45,3 +44,11 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+[v-cloak] > * {
+    display: none;
+}
+[v-cloak]::before {
+    content: "loading...";
+}
+</style>
