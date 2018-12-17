@@ -8,7 +8,7 @@
 # install dependencies
 npm install
 
-# generate index.html
+# generate index.html replace {{yourappkey}} with your Trello api key
 gulp build:index --app_key={{yourappkey}}
 
 # serve with hot reload at localhost:8080
