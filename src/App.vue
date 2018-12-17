@@ -111,4 +111,11 @@ a {
         height: auto;
     }
 }
+.ei {
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    vertical-align: middle;
+}
 </style>

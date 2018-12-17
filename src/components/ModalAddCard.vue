@@ -1,6 +1,6 @@
 <template>
 <div>
-  <b-button class="btn btn-sm btn-outline-success" @click="showModal"><span aria-hidden="true" class="ei-plus_alt"></span> <span class="d-none d-sm-inline-block">Card</span></b-button>
+  <b-button class="btn btn-sm btn-outline-success" @click="showModal"><span aria-hidden="true" class="ei ei-plus_alt"></span> <span class="d-none d-sm-inline-block">Card</span></b-button>
   <b-modal ref="myModalRef" :id="'myModal'+listId" hide-footer title="Add new card to list">
     <form>
       <p class="notValid" v-if="errors.length">

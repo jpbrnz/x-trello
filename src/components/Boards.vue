@@ -6,7 +6,7 @@
     <div class="board-header">
 
       <div class="row">
-        <div class="col-sm">
+        <div class="col-sm-4 col-12">
           <div class="board-selector">
             <p>
               <select class="form-control" v-model="selected" v-on:change="loadLists(selected.value)">
@@ -18,11 +18,13 @@
             </p>
           </div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm-8 col-12">
           <div class="board-toggler mt-2">
             <p>
               <toggle-button v-model="showLabels" /> Labels
-              <toggle-button v-model="showComments" /> Comments</p>
+              <toggle-button v-model="showComments" /> Comments
+              <toggle-button v-model="showDue" /> Due dates
+              <toggle-button v-model="showDescription" /> Description</p>
           </div>
         </div>
       </div>
@@ -35,12 +37,12 @@
 
     <div id="boardContainer" class="board">
       <b-alert variant="success" dismissible fade :show="showDismissibleAlert" @dismissed="showDismissibleAlert=false">
-        Card Created
+        Card added to list
       </b-alert>
       <div v-for="list in $store.state.lists" :key="list.name" class="list">
         <b-button-toolbar justify aria-label="Toolbar with button groups">
           <b-btn v-b-toggle="list.id" variant="light" role="button" aria-expanded="false" :aria-controls="list.id">
-            <em>From </em><strong>{{ list.name }}</strong> <em>List</em> - <small># of cards <span class="badge badge-pill badge-light">{{list['cards'].length}}</span></small></b-btn>
+            <strong>{{ list.name }}</strong> <em>List</em>&nbsp;&mdash;&nbsp;<span class="badge badge-pill badge-dark">Cards {{list['cards'].length}}</span></b-btn>
           <b-button-group class="mx-1">
             <b-button-group class="mx-1">
               <modaladdcard class="col-xs-10" :listId="list.id" v-on:card-created="createdCard(selected.value)"></modaladdcard>
@@ -60,9 +62,11 @@
                         </div>
                       </div>
                       <h5>{{ card.name }}</h5>
-                      <b-badge v-if="card.due" variant="success">Card Due: {{card.due | formatDueDate}}</b-badge>
+                      <div v-if="showDue">
+                        <b-badge v-if="card.due" variant="success">Card Due: {{card.due | formatDueDate}}</b-badge>
+                      </div>
                       <hr>
-                      <vue-markdown>{{ card.desc }}</vue-markdown>
+                      <vue-markdown v-if="showDescription">{{ card.desc }}</vue-markdown>
                       <div v-if="showComments">
                         <div v-if="card.comments[0]" class="card-comment-box">
                           <div v-for="comment in card['comments']" :key="comment.data.text" class="card-comment">
@@ -80,7 +84,7 @@
                                         <vue-markdown>{{ comment.data.text }}</vue-markdown>
                                       </p>
                                       <hr>
-                                      <p class="small"><strong><em> Commented on <span aria-hidden="true" class="ei-icon_clock_alt"></span> {{ comment.date | formatDate }}</em></strong></p>
+                                      <p class="small"><strong><em> Commented on <span aria-hidden="true" class="ei ei-icon_clock_alt"></span> {{ comment.date | formatDate }}</em></strong></p>
                                     </div>
                                   </div>
                                 </b-col>
@@ -143,6 +147,8 @@ export default {
       anchor: '#',
       showLabels: true,
       showComments: true,
+      showDescription: true,
+      showDue: true,
       showDismissibleAlert: false
     }
 
