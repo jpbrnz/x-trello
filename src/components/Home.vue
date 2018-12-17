@@ -1,7 +1,6 @@
 <template>
 <div class="container">
-  <div class="status">
-    <hr>
+  <div class="status mt-4">
     <Login />
   </div>
 

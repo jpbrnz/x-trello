@@ -6,7 +6,7 @@
     <div class="board-header">
 
       <div class="row">
-        <div class="col-sm-8 col-9">
+        <div class="col-sm-8 col-10">
           <div class="row">
             <div class="col-12">
               <div class="board-selector">
@@ -34,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4 col-3 text-center">
+        <div class="col-sm-4 col-2 text-center">
           <img src="../assets/logo.png" style="width:100%;max-width: 100px">
         </div>
 
@@ -51,7 +51,10 @@
         <div v-for="list in $store.state.lists" :key="list.name" class="list">
           <b-button-toolbar justify aria-label="Toolbar with button groups">
             <b-btn v-b-toggle="list.id" variant="light" role="button" aria-expanded="false" :aria-controls="list.id">
-              <strong>{{ list.name }}</strong> <em>List</em>&nbsp;&mdash;&nbsp;<span class="badge badge-pill badge-dark">Cards {{list['cards'].length}}</span></b-btn>
+              <span class="when-opened"><span class="ei ei-minus_alt2"></span></span>
+              <span class="when-closed"><span class="ei ei-plus_alt2"></span></span>
+              <strong>{{ list.name }}</strong> <em>List</em>&nbsp;&mdash;&nbsp;<span class="badge badge-pill badge-dark">Cards {{list['cards'].length}}</span>
+            </b-btn>
             <b-button-group class="mx-1">
               <b-button-group class="mx-1">
                 <modaladdcard class="col-xs-10" :listId="list.id" v-on:card-created="createdCard(selected.value)"></modaladdcard>
@@ -81,7 +84,7 @@
                             <div v-for="comment in card['comments']" :key="comment.data.text" class="card-comment">
                               <b-container fluid>
                                 <b-row no-gutters>
-                                  <b-col class="col-lg-1 col-12">
+                                  <b-col class="col-lg-2 col-12">
                                     <div class="pt-3">
                                       <strong>{{ comment.memberCreator.fullName }}</strong> <span aria-hidden="true" class="ei-comment_alt"></span>
                                     </div>
@@ -180,6 +183,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.collapsed > .when-opened,
+:not(.collapsed) > .when-closed {
+    display: none;
+}
 .card.nobo {
     text-align: left;
     border: none;
@@ -251,5 +258,8 @@ export default {
 .shadow-hover {
     transition: box-shadow 0.3s ease;
     box-shadow: 0 2px 9px 2px rgba(0,0,0,.15);
+}
+.board-header {
+    padding-top: 40px;
 }
 </style>
