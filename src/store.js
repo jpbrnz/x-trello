@@ -36,7 +36,7 @@ export default new Vuex.Store({
           //console.log(state.member)
         },
         setBoardData (state, board ) {
-          console.log(board.name + ' - ' + board.id);
+          //console.log(board.name + ' - ' + board.id);
           state.boards.push({'value': board.id, 'text': board.name });
         },
 
@@ -49,7 +49,7 @@ export default new Vuex.Store({
         },
 
         setListData (state, list ) {
-          console.log('Inside setListData...');
+          //console.log('Inside setListData...');
           var listIdx = state.lists.push( {'name': list.name,
                             'id': list.id,
                             'cards': [] }
@@ -79,7 +79,7 @@ export default new Vuex.Store({
         loadListCards ({ commit }, listId) {
           window.Trello.get('/lists/' + listId  + '/cards',
             function(cards) {
-              console.log('Inside locaListCards...');
+              //console.log('Inside locaListCards...');
 
               cards.forEach( function(card) {
 
@@ -103,7 +103,7 @@ export default new Vuex.Store({
 
           window.Trello.get('/boards/' + boardId + '/lists',
             function(lists) {
-              console.log('Inside loadLists...');
+              //console.log('Inside loadLists...');
 
               lists.forEach( function(list) {
                 commit('setListData', list)

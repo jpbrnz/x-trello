@@ -1,17 +1,17 @@
 <template>
 <div>
   <b-button class="btn btn-sm btn-outline-success" @click="showModal"><span aria-hidden="true" class="ei-plus_alt"></span> <span class="d-none d-sm-inline-block">Card</span></b-button>
-  <b-modal ref="myModalRef" :id="'myModal'+listId" hide-footer title="Create Card">
+  <b-modal ref="myModalRef" :id="'myModal'+listId" hide-footer title="Add new card to list">
     <form>
-      <p v-if="errors.length">
-        <b>Please correct the following error(s):</b>
+      <p class="notValid" v-if="errors.length">
+        <b class="text-center">Oops!! You might want to fix:</b>
         <ul>
-          <li v-for="error in errors">{{ error }}</li>
+          <li v-for="error in errors"><span class="ei ei-error-oct_alt"></span>{{ error }}</li>
         </ul>
       </p>
       <div class="form-group">
         <label>Title</label>
-        <input v-model="cardtitled" class="form-control" placeholder="Add your request name here !" />
+        <input v-model="cardtitled" class="form-control" placeholder="Include a title" />
       </div>
       <div class="form-group">
         <label>Content</label>
@@ -23,7 +23,7 @@
               </div> -->
       <div class="form-group">
         <label>Ref URL</label>
-        <input v-model="cardURL" class="form-control" placeholder="Add your request name here !" />
+        <input v-model="cardURL" class="form-control" placeholder="Inlcude a reference url" />
       </div>
     </form>
     <div class="modal-footer">
@@ -57,10 +57,10 @@ export default {
       this.errors = [];
 
       if (!this.cardtitled) {
-        this.errors.push("Title required.");
+        this.errors.push("\nTitle is missing");
       }
       if (!this.cardcontent) {
-        this.errors.push('Content required.');
+        this.errors.push('\nContent is missing');
       }
 
       if (!this.errors.length) {
@@ -110,3 +110,11 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.notValid {
+    padding: 4px;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    background: #fbeaec;
+}
+</style>

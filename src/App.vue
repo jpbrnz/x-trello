@@ -2,27 +2,9 @@
 <div id="app" class="wrap">
   <b-navbar toggleable="md" type="dark" variant="dark" fixed="top">
     <b-navbar-toggle v-if="$store.state.loggedIn" target="nav_collapse"></b-navbar-toggle>
-    <b-navbar-brand href="#"><svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <title>trello-mark-blue-flat</title>
-        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="Logos" transform="translate(-1579.000000, -521.000000)">
-                <g id="Group" transform="translate(-9.000000, 1.000000)">
-                    <g id="Trello-Logo" transform="translate(468.000000, 0.000000)">
-                        <g id="Trello-Mark---Blue---Flat" transform="translate(1020.000000, 420.000000)">
-                            <g id="Mark" transform="translate(100.000000, 100.000000)">
-                                <rect id="Board" fill="#0079BF" x="0" y="0" width="200" height="200" rx="25"></rect>
-                                <rect id="Right-List" fill="#FFFFFF" x="113" y="26" width="61" height="87.5" rx="12"></rect>
-                                <rect id="Left-List" fill="#FFFFFF" x="26" y="26" width="61" height="137.5" rx="12"></rect>
-                            </g>
-                        </g>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </svg></b-navbar-brand>
     <b-navbar-nav class="ml-auto">
-      <b-nav-item v-if="$store.state.loggedIn">
-        Welcome:&nbsp;&nbsp;<b><b-img rounded="circle" v-bind:src="'https://trello-avatars.s3.amazonaws.com/' + $store.state.member.avatarHash +'/30.png'" v-cloak/> {{ $store.state.member.fullName }}</b>
+      <b-nav-item v-if="$store.state.loggedIn" :href="'https://trello.com/'+ $store.state.member.username" target="_blank" v-cloak>
+        Welcome:&nbsp;&nbsp;<b><b-img rounded="circle" v-bind:src="'https://trello-avatars.s3.amazonaws.com/' + $store.state.member.avatarHash +'/30.png'"/> {{ $store.state.member.fullName }}</b>
       </b-nav-item>
     </b-navbar-nav>
     <b-collapse v-if="$store.state.loggedIn" is-nav id="nav_collapse">
