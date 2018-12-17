@@ -1,4 +1,4 @@
-# hello-trello
+# x-trello
 
 > A Vue.js project
 
