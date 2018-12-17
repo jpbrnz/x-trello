@@ -87,6 +87,12 @@ export default {
 </script>
 
 <style lang="scss">
+[v-cloak] > * {
+    display: none;
+}
+[v-cloak]::before {
+    content: "loading...";
+}
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
