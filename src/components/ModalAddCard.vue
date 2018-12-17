@@ -1,59 +1,59 @@
 <template>
-    <div>
-      <b-button class="btn btn-sm btn-outline-success" @click="showModal"><span aria-hidden="true" class="ei-plus_alt"></span> <span class="d-none d-sm-inline-block">Card</span></b-button>
-      <b-modal ref="myModalRef" :id="'myModal'+listId" hide-footer title="Create Card">
-          <form>
-            <p v-if="errors.length">
-              <b>Please correct the following error(s):</b>
-              <ul>
-                <li v-for="error in errors">{{ error }}</li>
-              </ul>
-            </p>
-              <div class="form-group">
-                  <label>Title</label>
-                  <input v-model="cardtitled" class="form-control" placeholder="Add your request name here !" />
-              </div>
-              <div class="form-group">
-                  <label>Content</label>
-                  <textarea v-model="cardcontent" class="form-control" placeholder="Add your card content here !" />
-              </div>
-              <!-- <div class="form-group">
+<div>
+  <b-button class="btn btn-sm btn-outline-success" @click="showModal"><span aria-hidden="true" class="ei-plus_alt"></span> <span class="d-none d-sm-inline-block">Card</span></b-button>
+  <b-modal ref="myModalRef" :id="'myModal'+listId" hide-footer title="Create Card">
+    <form>
+      <p v-if="errors.length">
+        <b>Please correct the following error(s):</b>
+        <ul>
+          <li v-for="error in errors">{{ error }}</li>
+        </ul>
+      </p>
+      <div class="form-group">
+        <label>Title</label>
+        <input v-model="cardtitled" class="form-control" placeholder="Add your request name here !" />
+      </div>
+      <div class="form-group">
+        <label>Content</label>
+        <textarea v-model="cardcontent" class="form-control" placeholder="Add your card content here !" />
+      </div>
+      <!-- <div class="form-group">
                 <b-form-file v-model="file" :state="Boolean(file)" placeholder="Choose a file..."></b-form-file>
                 <div class="mt-3">Selected file: {{file && file.name}}</div>
               </div> -->
-              <div class="form-group">
-                  <label>Ref URL</label>
-                  <input v-model="cardURL" class="form-control" placeholder="Add your request name here !" />
-              </div>
-          </form>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-light" @click="hideModal" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success" data-dismiss="modal" @click="onCreate">Create</button>
-          </div>
-      </b-modal>
+      <div class="form-group">
+        <label>Ref URL</label>
+        <input v-model="cardURL" class="form-control" placeholder="Add your request name here !" />
+      </div>
+    </form>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" @click="hideModal" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-success" data-dismiss="modal" @click="onCreate">Create</button>
     </div>
+  </b-modal>
+</div>
 </template>
 <script>
 export default {
-    name: 'modaladdcard',
-    props: ['listId'],
-    data() {
-        return {
-            errors: [],
-            cardtitled: "",
-            cardcontent: "",
-            cardURL: ""
-        };
-    },
+  name: 'modaladdcard',
+  props: ['listId'],
+  data() {
+    return {
+      errors: [],
+      cardtitled: "",
+      cardcontent: "",
+      cardURL: ""
+    };
+  },
 
-    methods: {
-      showModal () {
-        this.$refs.myModalRef.show()
-      },
-      hideModal () {
-        this.$refs.myModalRef.hide()
-      },
-      checkForm: function () {
+  methods: {
+    showModal() {
+      this.$refs.myModalRef.show()
+    },
+    hideModal() {
+      this.$refs.myModalRef.hide()
+    },
+    checkForm: function() {
       this.errors = [];
 
       if (!this.cardtitled) {
@@ -71,20 +71,20 @@ export default {
      * onCreate - proceed to new card creation
      */
     onCreate() {
-        if (!this.checkForm()) {
-          return false;
-        }
-        
-        let newCard = {
-            name: this.cardtitled,
-            desc: '\n**Initiator:** ' + this.$store.state.member.fullName + '\n\n**Description:** ' + this.cardcontent + '\n\n**Ref URL:** ' + this.cardURL,
-            pos: "top",
-            due: new Date().setDate(new Date().getDate() + 7),
-            idList: this.listId,
-            idMembers: this.$store.state.member.id
-        };
+      if (!this.checkForm()) {
+        return false;
+      }
 
-        Trello.post('/cards/', newCard, this.onSuccessAddCard, this.onErrorAddCard);
+      let newCard = {
+        name: this.cardtitled,
+        desc: '\n**Initiator:** ' + this.$store.state.member.fullName + '\n\n**Description:** ' + this.cardcontent + '\n\n**Ref URL:** ' + this.cardURL,
+        pos: "top",
+        due: new Date().setDate(new Date().getDate() + 7),
+        idList: this.listId,
+        idMembers: this.$store.state.member.id
+      };
+
+      Trello.post('/cards/', newCard, this.onSuccessAddCard, this.onErrorAddCard);
 
     },
 
@@ -93,10 +93,10 @@ export default {
      * @param  Object added card
      */
     onSuccessAddCard(response) {
-        this.$emit('card-created', response)
-        this.cardtitled = ""
-        this.cardcontent = ""
-        //alert('Card created')
+      this.$emit('card-created', response)
+      this.cardtitled = ""
+      this.cardcontent = ""
+      //alert('Card created')
     },
 
     /**
@@ -105,7 +105,7 @@ export default {
      * @return {[type]}       [description]
      */
     onErrorAddCard(error) {
-        console.error(error)
+      console.error(error)
     }
   }
 }

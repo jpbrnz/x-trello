@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid">
-    <h6 class="text-center">
+<div class="container-fluid">
+  <h6 class="text-center">
       <img src="../assets/logo.png" style="width: 70px"> <svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <title>trello-mark-blue-flat</title>
           <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -20,40 +20,40 @@
           </g>
       </svg><br><small><b-badge class="small" variant="light">Trello client.js version {{ getTrelloVersion() }}</b-badge></small>
     </h6>
-    <div class="status">
-      <hr>
-      <Login />
-    </div>
-
-    <Boards />
+  <div class="status">
+    <hr>
+    <Login />
   </div>
+
+  <Boards />
+</div>
 </template>
 <script>
 import Login from './Login.vue'
 import Boards from './Boards.vue'
 export default {
-    name: 'home',
-    components: {
-      Login,
-      Boards
-    },
-    methods: {
-      /**
-       * getTrelloVersion - trello version helper
-       * @return String version of trello
-       */
-      getTrelloVersion() {
-          return Trello.version()
-      }
+  name: 'home',
+  components: {
+    Login,
+    Boards
+  },
+  methods: {
+    /**
+     * getTrelloVersion - trello version helper
+     * @return String version of trello
+     */
+    getTrelloVersion() {
+      return Trello.version()
     }
+  }
 }
 </script>
 <style lang="scss">
 h6 {
-  padding-top: 40px;
-  svg {
-    width: 50px;
-    height: 50px;
-  }
+    padding-top: 40px;
+    svg {
+        width: 50px;
+        height: 50px;
+    }
 }
 </style>

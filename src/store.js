@@ -89,7 +89,6 @@ export default new Vuex.Store({
                     //console.log(comments);
                     card.comments = [];
                     card.comments = comments;
-                    // push the full card to the state
                     commit('addCardToList', card);
                 });
 
@@ -116,7 +115,6 @@ export default new Vuex.Store({
 
         loadMemberData ({ commit, dispatch }) {
           window.Trello.get('/members/me',
-            // handle success
             function (member) {
               console.log('Success callback!!!');
               commit('setMemberData', member)
@@ -126,7 +124,6 @@ export default new Vuex.Store({
               });
             },
 
-            // handle failure
             () => console.log('Cannot load member data')
           )
         }

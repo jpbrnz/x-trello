@@ -8,13 +8,11 @@ import store from './store'
 Vue.use(BootstrapVue)
 
 import VueRouter from 'vue-router'
-//import VueResource from 'vue-resource'
-//Vue.use(VueResource)
+
 Vue.use(VueRouter)
 
 import Home from './components/Home.vue'
 
-//define route here
 const routes = [{
     path: '/home',
     name: 'home',
