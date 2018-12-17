@@ -1,8 +1,5 @@
 <template>
-<div class="container-fluid">
-  <h6 class="text-center">
-      <img src="../assets/logo.png" style="width: 100px"><br><small><b-badge class="small" variant="light">Trello client.js version {{ getTrelloVersion() }}</b-badge></small>
-    </h6>
+<div class="container">
   <div class="status">
     <hr>
     <Login />
@@ -19,15 +16,6 @@ export default {
   components: {
     Login,
     Boards
-  },
-  methods: {
-    /**
-     * getTrelloVersion - trello version helper
-     * @return String version of trello
-     */
-    getTrelloVersion() {
-      return Trello.version()
-    }
   }
 }
 </script>

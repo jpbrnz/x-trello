@@ -1,6 +1,6 @@
 <template>
 <div id="app" class="wrap">
-  <b-navbar toggleable="md" type="dark" variant="dark" fixed="top">
+  <b-navbar toggleable="md" type="light" variant="light" fixed="top">
     <b-navbar-toggle v-if="$store.state.loggedIn" target="nav_collapse"></b-navbar-toggle>
     <b-navbar-nav class="ml-auto">
       <b-nav-item v-if="$store.state.loggedIn" :href="'https://trello.com/'+ $store.state.member.username" target="_blank" v-cloak>
